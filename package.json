@@ -1,0 +1,23 @@
+{
+    "name": "jesjam-mobile",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "serve:mobile": "nx serve mobile",
+        "build:mobile": "nx build mobile",
+        "serve:api": "nx serve api",
+        "test:api": "nx test api"
+    },
+    "dependencies": {
+        "@nrwl/nx": "latest",
+        "@nx/devkit": "^20.8.1",
+        "nx": "^20.8.1"
+    },
+    "workspaces": [
+        "apps/*",
+        "libs/*"
+    ],
+    "devDependencies": {
+        "@types/node": "^22.15.3"
+    }
+}

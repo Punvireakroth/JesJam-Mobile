@@ -1,0 +1,6 @@
+{
+  "name": "models",
+  "root": "libs/models",
+  "sourceRoot": "libs/models",
+  "projectType": "library"
+} 

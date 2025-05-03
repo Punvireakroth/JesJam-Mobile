@@ -1,0 +1,6 @@
+{
+  "name": "constants",
+  "root": "libs/constants",
+  "sourceRoot": "libs/constants",
+  "projectType": "library"
+} 

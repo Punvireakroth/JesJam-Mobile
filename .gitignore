@@ -1,0 +1,44 @@
+# Node
+node_modules/
+npm-debug.log
+.npm/
+
+# Nx
+.nx/
+dist/
+tmp/
+
+# app
+apps/mobile/.dart_tool/
+apps/mobile/build/
+apps/mobile/.flutter-plugins
+apps/mobile/.flutter-plugins-dependencies
+apps/mobile/.packages
+apps/mobile/pubspec.lock
+apps/mobile/ios/Pods/
+apps/mobile/android/.gradle/
+apps/mobile/ios/Flutter/App.framework
+apps/mobile/ios/Flutter/Flutter.framework
+apps/mobile/ios/Flutter/Flutter.podspec
+
+# api
+apps/api/vendor/
+apps/api/node_modules/
+apps/api/.env
+apps/api/.env.backup
+apps/api/.phpunit.result.cache
+apps/api/Homestead.json
+apps/api/Homestead.yaml
+apps/api/npm-debug.log
+apps/api/yarn-error.log
+apps/api/public/hot
+apps/api/public/storage
+apps/api/storage/*.key
+apps/api/bootstrap/cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store

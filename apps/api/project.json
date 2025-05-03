@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "root": "apps/api",
+  "sourceRoot": "apps/api",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/api && php artisan serve"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/api && php artisan test"
+      }
+    },
+    "migrate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/api && php artisan migrate"
+      }
+    }
+  }
+} 

@@ -1,0 +1,26 @@
+{
+  "name": "mobile",
+  "root": "apps/mobile",
+  "sourceRoot": "apps/mobile",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/mobile && flutter build apk"
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/mobile && flutter run"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/mobile && flutter test"
+      }
+    }
+  }
+} 

@@ -8,18 +8,21 @@ npm-debug.log
 dist/
 tmp/
 
-# app
-apps/mobile/.dart_tool/
-apps/mobile/build/
-apps/mobile/.flutter-plugins
-apps/mobile/.flutter-plugins-dependencies
-apps/mobile/.packages
-apps/mobile/pubspec.lock
-apps/mobile/ios/Pods/
-apps/mobile/android/.gradle/
-apps/mobile/ios/Flutter/App.framework
-apps/mobile/ios/Flutter/Flutter.framework
-apps/mobile/ios/Flutter/Flutter.podspec
+# mobile
+apps/mobile/node_modules/
+apps/mobile/.expo/
+apps/mobile/npm-debug.*
+apps/mobile/*.jks
+apps/mobile/*.p8
+apps/mobile/*.p12
+apps/mobile/*.key
+apps/mobile/*.mobileprovision
+apps/mobile/*.orig.*
+apps/mobile/web-build/
+apps/mobile/.DS_Store
+apps/mobile/.env.development
+apps/mobile/.env.production
+apps/mobile/.env.staging
 
 # api
 apps/api/vendor/
@@ -42,3 +45,5 @@ apps/api/bootstrap/cache/
 *.swp
 *.swo
 .DS_Store
+
+requirements.md

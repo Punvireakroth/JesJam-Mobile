@@ -3,10 +3,15 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "serve:mobile": "nx serve mobile",
-        "build:mobile": "nx build mobile",
+        "start:mobile": "nx start mobile",
+        "android": "nx android mobile",
+        "ios": "nx ios mobile",
+        "web": "nx web mobile",
+        "build:android": "nx build:android mobile",
+        "build:ios": "nx build:ios mobile",
         "serve:api": "nx serve api",
-        "test:api": "nx test api"
+        "test:api": "nx test api",
+        "test:mobile": "nx test mobile"
     },
     "dependencies": {
         "@nrwl/nx": "latest",

@@ -46,4 +46,4 @@ apps/api/bootstrap/cache/
 *.swo
 .DS_Store
 
-requirements.md
+docs/

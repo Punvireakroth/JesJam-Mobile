@@ -20,6 +20,7 @@ apps/mobile/*.mobileprovision
 apps/mobile/*.orig.*
 apps/mobile/web-build/
 apps/mobile/.DS_Store
+apps/mobile/.env
 apps/mobile/.env.development
 apps/mobile/.env.production
 apps/mobile/.env.staging

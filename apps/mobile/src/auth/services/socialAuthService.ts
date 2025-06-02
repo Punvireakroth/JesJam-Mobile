@@ -15,7 +15,7 @@ import { GOOGLE_EXPO_CLIENT_ID, GOOGLE_ANDROID_CLIENT_ID, GOOGLE_IOS_CLIENT_ID, 
 WebBrowser.maybeCompleteAuthSession();
 
 // Google auth 
-export const googleAuth = async () => {
+export const useGoogleAuth = () => {
     const [request, response, promptAsync] = Google.useAuthRequest({
         clientId: GOOGLE_EXPO_CLIENT_ID,
         androidClientId: GOOGLE_ANDROID_CLIENT_ID,
@@ -32,7 +32,7 @@ export const googleAuth = async () => {
 };
 
 // Facebook auth
-export const facebookAuth = async () => {
+export const useFacebookAuth = () => {
     const [request, response, promptAsync] = Facebook.useAuthRequest({
         clientId: FACEBOOK_APP_ID,
         redirectUri: Platform.select({

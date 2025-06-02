@@ -64,7 +64,6 @@ const login = async (credentials: LoginCredentials): Promise<{ user: User; acces
     } catch (error) {
         throw new Error('Login failed');
     }
-    throw new Error('Network error. Please try again.');
 }
 
 const register = async (credentials: RegisterCredentials): Promise<{ user: User; access_token: string }> => {

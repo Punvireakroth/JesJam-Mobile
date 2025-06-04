@@ -10,18 +10,10 @@ const phoneRegex = /^(\\+855|0)[1-9]\\d{7,8}$/;
 export const loginSchema = Yup.object().shape({
     email: Yup.string()
     .email('Please enter a valid email')
-    .when('phone', {
-        is: (phone: string) => !phone || phone.length === 0,
-        then: (schema) => schema.required('Email or phone is required'),
-        otherwise: (schema) => schema.notRequired(),
-    }),
+    .required('Email is required'),
     phone: Yup.string()
     .matches(phoneRegex, 'Please enter a valid phone number')
-    .when('email', {
-      is: (email: string) => !email || email.length === 0,
-      then: (schema) => schema.required('Email or phone is required'),
-      otherwise: (schema) => schema.notRequired(),
-    }),
+    .required('Phone number is required'),
     password: Yup.string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters'),
@@ -34,18 +26,10 @@ export const registerSchema = Yup.object().shape({
       .min(2, 'Name must be at least 2 characters'),
     email: Yup.string()
       .email('Please enter a valid email')
-      .when('phone', {
-        is: (phone: string) => !phone || phone.length === 0,
-        then: (schema) => schema.required('Email or phone is required'),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+      .required('Email is required'),
     phone: Yup.string()
       .matches(phoneRegex, 'Please enter a valid phone number')
-      .when('email', {
-        is: (email: string) => !email || email.length === 0,
-        then: (schema) => schema.required('Email or phone is required'),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+      .required('Phone number is required'),
     password: Yup.string()
       .required('Password is required')
       .matches(
@@ -74,18 +58,10 @@ export const otpVerificationSchema = Yup.object().shape({
       .min(2, 'Name must be at least 2 characters'),
     email: Yup.string()
       .email('Please enter a valid email')
-      .when('phone', {
-        is: (phone: string) => !phone || phone.length === 0,
-        then: (schema) => schema.required('Email or phone is required'),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+      .required('Email is required'),
     phone: Yup.string()
       .matches(phoneRegex, 'Please enter a valid phone number')
-      .when('email', {
-        is: (email: string) => !email || email.length === 0,
-        then: (schema) => schema.required('Email or phone is required'),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+      .required('Phone number is required'),
     password: Yup.string()
       .required('Password is required')
       .matches(

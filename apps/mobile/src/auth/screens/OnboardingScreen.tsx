@@ -10,25 +10,25 @@ const { width, height } = Dimensions.get('window');
 const slides = [
     {
         id: '1',
-        image: require('../../assets/onboarding-1.png'),
+        image: require('../../../assets/icon.png'),
         title: 'Welcome to JesJam',
         description: 'Your personal Khmer Biology learning app designed for Grade 12 students.',
     },
     {
         id: '2',
-        image: require('../../assets/onboarding-2.png'),
+        image: require('../../../assets/icon.png'),
         title: 'Spaced Repetition',
         description: 'Learn efficiently with our smart flashcard system that helps you remember what you learn.',
     },
     {
         id: '3',
-        image: require('../../assets/onboarding-3.png'),
+        image: require('../../../assets/icon.png'),
         title: 'Practice for Exams',
         description: 'Build confidence with exercises designed to match the national exam format.',
     },
     {
         id: '4',
-        image: require('../../assets/onboarding-4.png'),
+        image: require('../../../assets/icon.png'),
         title: 'Study Anywhere',
         description: 'Full offline functionality lets you study even without internet access.',
     },

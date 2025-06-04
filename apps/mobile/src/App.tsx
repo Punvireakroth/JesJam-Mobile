@@ -1,20 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AppNavigator from './navigation/AuthNavigator';
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <Text>Welcome to JesJam Mobile!</Text>
-            <Text>Built with React Native and Expo</Text>
-        </View>
+        <SafeAreaProvider>
+            <StatusBar style="auto" />
+            <AppNavigator />
+        </SafeAreaProvider>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+

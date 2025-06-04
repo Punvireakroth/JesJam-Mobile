@@ -19,7 +19,7 @@ const GuestConversionScreen: React.FC = () => {
         >
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <Image
-                    source={require('../../assets/logo.png')}
+                    source={require('../../../assets/icon.png')}
                     style={styles.logo}
                     resizeMode="contain"
                 />

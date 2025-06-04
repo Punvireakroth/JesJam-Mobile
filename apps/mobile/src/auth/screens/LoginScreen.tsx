@@ -61,7 +61,7 @@ const LoginScreen: React.FC = () => {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.logoContainer}>
                     <Image
-                        source={require('../../assets/logo.png')}
+                        source={require('../../../assets/icon.png')}
                         style={styles.logo}
                         resizeMode="contain"
                     />

@@ -23,8 +23,8 @@ const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
 
     // Icon sources
     const icons = {
-        google: require('../../assets/facebook-icon.svg'),
-        facebook: require('../../assets/facebook-icon.svg'),
+        google: require('../../../assets/facebook-icon.svg'),
+        facebook: require('../../../assets/facebook-icon.svg'),
     };
 
 

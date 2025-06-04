@@ -57,7 +57,7 @@ const RegisterScreen: React.FC = () => {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 {/* Brand section */}
                 <View style={styles.logoContainer}>
-                    <Image source={require('../../assets/logo.png')}
+                    <Image source={require('../../../assets/icon.png')}
                         style={styles.logo}
                         resizeMode='contain' />
                 </View>

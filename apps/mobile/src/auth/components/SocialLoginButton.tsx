@@ -1,45 +1,24 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, Image, ActivityIndicator, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
+const FacebookIcon = require('assets/svg/facebook-icon.svg');
 interface SocialLoginButtonProps {
-    provider: 'google' | 'facebook';
     onPress: () => void;
     isLoading?: boolean;
     label?: string;
 }
 
 const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
-    provider,
     onPress,
     isLoading,
     label }) => {
 
-    // Default labels
-    const defaultLabels = {
-        google: 'Continue with Google',
-        facebook: 'Continue with Facebook',
-    };
-
-    // Icon sources
-    const icons = {
-        google: require('../../../assets/facebook-icon.svg'),
-        facebook: require('../../../assets/facebook-icon.svg'),
-    };
-
-
     return (
         <TouchableOpacity style={[
             styles.button,
-            provider === 'facebook' && styles.facebookButton,
-            provider === 'google' && styles.googleButton
         ]} onPress={onPress} disabled={isLoading}>
-            <Image source={icons[provider]} style={styles.icon} />
             <Text style={[
                 styles.buttonText,
-                provider === 'facebook' && styles.facebookText,
-                provider === 'google' && styles.googleText
-            ]}>{label || defaultLabels[provider]}</Text>
+            ]}>{label}</Text>
         </TouchableOpacity>
     );
 };
@@ -52,11 +31,13 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 24,
         borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
         minHeight: 48,
     },
-    googleButton: {
+    socialButton: {
         backgroundColor: '#FFFFFF',
-        borderWidth: 1,
+        borderWidth: 3,
         borderColor: '#E5E7EB',
     },
     facebookButton: {
@@ -74,13 +55,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 16,
-        fontWeight: '500',
-    },
-    googleText: {
         color: '#757575',
-    },
-    facebookText: {
-        color: '#FFFFFF',
+        fontWeight: '500',
     },
 })
 

@@ -9,6 +9,7 @@ import LoginScreen from '../auth/screens/LoginScreen';
 import RegisterScreen from '@/auth/screens/RegisterScreen';
 import OTPVerificationScreen from '@/auth/screens/OTPVerificationScreen';
 import GuestConversionScreen from '@/auth/screens/GuestConversionScreen';
+import WelcomeScreen from '@/auth/screens/WelcomeScreen';
 // TODO: Home Screens import here
 
 // Auth context
@@ -26,6 +27,7 @@ const AuthStack = () => {
         <Stack.Navigator screenOptions={{
             headerShown: false,
         }}>
+            <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="OTPVerification" component={OTPVerificationScreen} />

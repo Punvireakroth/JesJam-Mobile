@@ -31,14 +31,14 @@ const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
     return (
         <TouchableOpacity style={[
             styles.button,
-            provider === 'facebook' && styles.facebookButton,
-            provider === 'google' && styles.googleButton
+            provider === 'facebook' && styles.socialButton,
+            provider === 'google' && styles.socialButton
         ]} onPress={onPress} disabled={isLoading}>
             <Image source={icons[provider]} style={styles.icon} />
             <Text style={[
                 styles.buttonText,
-                provider === 'facebook' && styles.facebookText,
-                provider === 'google' && styles.googleText
+                provider === 'facebook' && styles.socialText,
+                provider === 'google' && styles.socialText
             ]}>{label || defaultLabels[provider]}</Text>
         </TouchableOpacity>
     );
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         minHeight: 48,
     },
-    googleButton: {
+    socialButton: {
         backgroundColor: '#FFFFFF',
-        borderWidth: 1,
+        borderWidth: 3,
         borderColor: '#E5E7EB',
     },
     facebookButton: {
@@ -76,11 +76,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
     },
-    googleText: {
+    socialText: {
         color: '#757575',
-    },
-    facebookText: {
-        color: '#FFFFFF',
     },
 })
 

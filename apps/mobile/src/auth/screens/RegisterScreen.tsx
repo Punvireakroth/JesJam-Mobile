@@ -116,7 +116,7 @@ const RegisterScreen: React.FC = () => {
                                         styles.input,
                                         touched.name && errors.name ? styles.inputError : null,
                                     ]}
-                                    placeholder="Enter your full name"
+                                    placeholder="Sok San"
                                     onChangeText={handleChange('name')}
                                     onBlur={handleBlur('name')}
                                     value={values.name}
@@ -174,7 +174,7 @@ const RegisterScreen: React.FC = () => {
                                         styles.input,
                                         touched.password && errors.password ? styles.inputError : null,
                                     ]}
-                                    placeholder="Create a strong password"
+                                    placeholder="Password"
                                     secureTextEntry
                                     onChangeText={handleChange('password')}
                                     onBlur={handleBlur('password')}
@@ -196,7 +196,7 @@ const RegisterScreen: React.FC = () => {
                                         styles.input,
                                         touched.password_confirmation && errors.password_confirmation ? styles.inputError : null,
                                     ]}
-                                    placeholder="Confirm your password"
+                                    placeholder="Confirm Password"
                                     secureTextEntry
                                     onChangeText={handleChange('password_confirmation')}
                                     onBlur={handleBlur('password_confirmation')}
@@ -215,7 +215,7 @@ const RegisterScreen: React.FC = () => {
                                 {isSubmitting ? (
                                     <ActivityIndicator size="small" color="#FFFFFF" />
                                 ) : (
-                                    <Text style={styles.registerButtonText}>Create</Text>
+                                    <Text style={styles.registerButtonText}>Register</Text>
                                 )}
                             </TouchableOpacity>
                         </View>

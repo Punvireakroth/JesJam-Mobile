@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 import { TextInput } from 'react-native-gesture-handler';
@@ -15,7 +15,6 @@ const LoginScreen: React.FC = () => {
     const [isPhoneLogin, setIsPhoneLogin] = useState(false);
 
     // Social auth hooks
-    const googleAuth = useGoogleAuth();
     const facebookAuth = useFacebookAuth();
 
     // Formik state
@@ -173,6 +172,7 @@ const LoginScreen: React.FC = () => {
                             style={styles.phoneButton}
                             onPress={() => setIsPhoneLogin(true)}
                         >
+                            <Image source={require('assets/phone-icon.jpg')} style={styles.icon} />
                             <Text style={styles.phoneButtonText}>Sign in with Phone Number</Text>
                         </TouchableOpacity>
                     </View>
@@ -283,18 +283,27 @@ const styles = StyleSheet.create({
         gap: 10,
     },
     phoneButton: {
-        backgroundColor: '#FFFFFF',
-        borderWidth: 1,
-        borderColor: '#3B82F6',
-        paddingVertical: 14,
-        borderRadius: 8,
+        flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 10,
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        borderRadius: 8,
+        borderWidth: 1,
+        borderBottomWidth: 3,
+        borderColor: '#E5E7EB',
+        minHeight: 48,
     },
     phoneButtonText: {
-        color: '#3B82F6',
-        fontWeight: '500',
         fontSize: 16,
+        color: '#303030',
+        opacity: 0.8,
+        fontWeight: '600',
+    },
+    icon: {
+        width: 24,
+        height: 24,
+        marginRight: 10,
     },
 })
 

@@ -16,6 +16,7 @@ const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
         <TouchableOpacity style={[
             styles.button,
         ]} onPress={onPress} disabled={isLoading}>
+            <Image source={require('assets/facebook-icon.jpg')} style={styles.icon} />
             <Text style={[
                 styles.buttonText,
             ]}>{label}</Text>
@@ -26,27 +27,15 @@ const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
 const styles = StyleSheet.create({
     button: {
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 8,
+        alignItems: 'center',
         borderWidth: 1,
-        borderColor: '#E5E7EB',
-        minHeight: 48,
-    },
-    socialButton: {
-        backgroundColor: '#FFFFFF',
-        borderWidth: 3,
-        borderColor: '#E5E7EB',
-    },
-    facebookButton: {
-        backgroundColor: '#1877F2',
-    },
-    buttonContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        borderBottomWidth: 3,
+        borderColor: '#3B82F6',
+        paddingVertical: 14,
+        borderRadius: 8,
+        marginTop: 10,
+        backgroundColor: '#F3F4F6',
     },
     icon: {
         width: 24,
@@ -54,9 +43,9 @@ const styles = StyleSheet.create({
         marginRight: 12,
     },
     buttonText: {
+        color: '#3B82F6',
+        fontWeight: '600',
         fontSize: 16,
-        color: '#757575',
-        fontWeight: '500',
     },
 })
 

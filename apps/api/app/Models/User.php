@@ -4,9 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserSession;
+use App\Models\GuestMigrationToken;
 
 class User extends Authenticatable
 {
@@ -21,7 +24,16 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
+        'auth_provider',
+        'provider_id',
+        'is_guest',
+        'profile_picture',
+        'preferred_language',
+        'preferred_font_size',
+        'dark_mode',
+        'is_phone_verified',
     ];
 
     /**
@@ -32,6 +44,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'provider_id',
     ];
 
     /**
@@ -43,7 +56,20 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'is_phone_verified' => 'boolean',
+            'is_guest' => 'boolean',
+            'dark_mode' => 'boolean',
             'password' => 'hashed',
         ];
+    }
+
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(UserSession::class);
+    }
+
+    public function guestMigrationTokens(): HasMany
+    {
+        return $this->hasMany(GuestMigrationToken::class);
     }
 }

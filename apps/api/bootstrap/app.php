@@ -11,7 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->prepend([
+            'middleware' => 'cors',
+            'options' => [
+                'allowedOrigins' => ['*'],
+                'allowedMethods' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+                'allowedHeaders' => ['Content-Type', 'Authorization'],
+            ],
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

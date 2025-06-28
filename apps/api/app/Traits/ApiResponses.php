@@ -18,11 +18,11 @@ trait ApiResponses
         ], $statusCode);
     }
 
-    protected function error($message, $statusCode)
+    protected function error($message, $statusCode, $errors = [])
     {
         return response()->json([
             'message' => $message,
-            'status' => 'error',
+            'errors' => $errors,
         ], $statusCode);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\GuestMigrationToken;
 use App\Models\UserSession;
+use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -49,9 +50,10 @@ class AuthController extends Controller
                 'auth_provider' => $request->phone ? 'phone' : 'email',
             ]);
 
-            // Send OPT if phone request is sent
+            // Send OTP if phone request is sent
             if ($request->phone) {
-                $this->sendOtpCode($request->phone);
+                $otpController = new OtpController();
+                $otpController->sendOtp($request);
             }
 
             // Generate token
@@ -365,27 +367,6 @@ class AuthController extends Controller
      * UTILS functions for auth
      * ------------------------------------------------------------
      */
-
-    /**
-     * Send OTP code
-     * 
-     * @param string $phone
-     */
-    private function sendOtpCode(string $phone)
-    {
-        // Generate 6 digits OTP code
-        $code = sprintf('%06d', random_int(0, 999999));
-
-        // Save OTP to database
-        OtpCode::create([
-            'phone' => $phone,
-            'code' => $code,
-            'expires_at' => now()->addMinutes(5), // 5 minutes expiry
-        ]);
-
-        // TODO: Send OTP code via SMS service
-        Log::info('OTP code sent to ' . $phone . ': ' . $code);
-    }
 
     /**
      * Create user session record.

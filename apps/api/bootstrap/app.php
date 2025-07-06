@@ -12,12 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->prepend([
-            'middleware' => 'cors',
-            'options' => [
-                'allowedOrigins' => ['*'],
-                'allowedMethods' => ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-                'allowedHeaders' => ['Content-Type', 'Authorization'],
-            ],
+            'cors' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

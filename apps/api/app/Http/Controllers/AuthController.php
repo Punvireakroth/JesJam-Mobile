@@ -40,11 +40,13 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        Log::info("Incomming request: " . json_encode($request->all()));
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required_without:phone|nullable|email|unique:users,email',
             'phone' => 'required_without:email|nullable|string|unique:users,phone',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
         ]);
 
         if ($validator->fails()) {

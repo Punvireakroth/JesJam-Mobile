@@ -34,5 +34,13 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI'),
+    ],
+    'sms' => [
+        'api_key' => env('SMS_API_KEY'),
+        'sender_id' => env('SMS_SENDER_ID'),
+    ],
 ];

@@ -7,10 +7,18 @@ use App\Traits\ApiResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use App\Services\SmsService;
 
 class OtpController extends Controller
 {
     use ApiResponses;
+    protected $smsService;
+
+    public function __construct(SmsService $smsService)
+    {
+        $this->smsService = $smsService;
+    }
+
     /**
      * Send OTP code
      * 
@@ -46,7 +54,8 @@ class OtpController extends Controller
             'expires_at' => now()->addMinutes(5),
         ]);
 
-        // TODO: Send OTP code via SMS service
+        // Send OTP code via SMS service
+        $this->smsService->sendOtp($request->phone, $code);
         Log::info('OTP code sent to ' . $request->phone . ': ' . $code);
 
         return $this->success('OTP code sent successfully', [

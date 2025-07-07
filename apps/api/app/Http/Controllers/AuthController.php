@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\GuestMigrationToken;
 use App\Models\UserSession;
-use App\Http\Controllers\OtpController;
+use App\Services\SmsService;
+use App\Services\SocialAuthService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,16 @@ class AuthController extends Controller
 {
     use ApiResponses;
 
+    protected $smsService;
+    protected $socialAuthService;
+
+    public function __construct(SmsService $smsService, SocialAuthService $socialAuthService)
+    {
+        $this->smsService = $smsService;
+        $this->socialAuthService = $socialAuthService;
+    }
+
+
     /**
      * Register a new user
      * 
@@ -29,11 +40,13 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        Log::info("Incoming request: " . json_encode($request->all()));
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required_without:phone|nullable|email|unique:users,email',
             'phone' => 'required_without:email|nullable|string|unique:users,phone',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
         ]);
 
         if ($validator->fails()) {
@@ -52,7 +65,7 @@ class AuthController extends Controller
 
             // Send OTP if phone request is sent
             if ($request->phone) {
-                $otpController = new OtpController();
+                $otpController = new OtpController($this->smsService);
                 $otpController->sendOtp($request);
             }
 
@@ -415,15 +428,8 @@ class AuthController extends Controller
     private function verifySocialToken(string $provider, string $accessToken)
     {
         try {
-            // TODO: Implement social token verification
-            // DEV MODE TESTING
             if ($provider === 'facebook') {
-                return [
-                    'id' => '123456789',
-                    'email' => 'facebook_user@example.com',
-                    'name' => 'Facebook User',
-                    'picture' => 'https://example.com/facebook_profile.jpg',
-                ];
+                return $this->socialAuthService->verifyFacebookToken($accessToken);
             }
             return null;
         } catch (Exception $e) {

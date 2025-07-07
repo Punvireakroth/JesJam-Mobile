@@ -40,7 +40,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        Log::info("Incomming request: " . json_encode($request->all()));
+        Log::info("Incoming request: " . json_encode($request->all()));
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',

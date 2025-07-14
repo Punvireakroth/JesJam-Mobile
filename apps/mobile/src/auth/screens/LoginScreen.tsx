@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ActivityIndicator, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
-import { TextInput } from 'react-native-gesture-handler';
 import { loginSchema } from '../utils/validationSchemas';
 import { useAuth } from '../hooks/useAuth';
 import SocialLoginButton from '../components/SocialLoginButton';

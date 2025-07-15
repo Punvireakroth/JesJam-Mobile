@@ -10,7 +10,7 @@ import RegisterScreen from '@/auth/screens/RegisterScreen';
 import OTPVerificationScreen from '@/auth/screens/OTPVerificationScreen';
 import GuestConversionScreen from '@/auth/screens/GuestConversionScreen';
 import WelcomeScreen from '@/auth/screens/WelcomeScreen';
-// TODO: Home Screens import here
+import HomeScreen from '@/home/screens/HomeScreen';
 
 // Auth context
 import { AuthProvider } from '../auth/contexts/AuthContext';
@@ -36,13 +36,13 @@ const AuthStack = () => {
     );
 }
 
-const PlaceHolderScreen = () => {
-    return (
-        <View>
-            <Text>PlaceHolderScreen</Text>
-        </View>
-    );
-}
+// const PlaceHolderScreen = () => {
+//     return (
+//         <View>
+//             <Text>PlaceHolderScreen</Text>
+//         </View>
+//     );
+// }
 
 // Authenticated Stack Navigator 
 const AppStack = () => {
@@ -50,8 +50,7 @@ const AppStack = () => {
         <Stack.Navigator screenOptions={{
             headerShown: false,
         }}>
-            {/* // TODO: Change to homescreen component */}
-            <Stack.Screen name="Home" component={PlaceHolderScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
     );
 }
@@ -90,9 +89,10 @@ const RootNavigator = () => {
             {!hasCompletedOnboarding ? (
                 <Stack.Screen name="Onboarding" component={OnboardingScreen} />
             ) : state.isAuthenticated ? (
-                <Stack.Screen name="App" component={AppStack} />
-            ) : (
                 <Stack.Screen name="Auth" component={AuthStack} />
+                // TODO: Switch the App
+            ) : (
+                <Stack.Screen name="App" component={AppStack} />
             )}
         </Stack.Navigator>
     );

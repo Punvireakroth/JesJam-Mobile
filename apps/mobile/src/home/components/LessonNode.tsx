@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Lesson } from '../types/course.types';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
@@ -11,6 +11,7 @@ interface LessonNodeProps {
     isCurrent: boolean;
     isCompleted: boolean;
     isLocked: boolean;
+    isReward?: boolean;
 }
 
 const LessonNode: React.FC<LessonNodeProps> = ({
@@ -18,7 +19,7 @@ const LessonNode: React.FC<LessonNodeProps> = ({
     isLast,
     isCurrent,
     isCompleted,
-    isLocked
+    isLocked,
 }) => {
     const navigation = useNavigation();
     const nodeRef = useRef(null);
@@ -26,7 +27,7 @@ const LessonNode: React.FC<LessonNodeProps> = ({
     // Animation for current node highlight
     const scale = useSharedValue(isCurrent ? 1.1 : 1);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isCurrent) {
             scale.value = withSpring(1.1);
         } else {
@@ -57,18 +58,49 @@ const LessonNode: React.FC<LessonNodeProps> = ({
     const getNodeIcon = () => {
         if (isLocked) return 'lock-closed';
         if (isCompleted) return 'checkmark';
-        return 'arrow-forward';
+        if (isCurrent) return 'play';
+        return 'play';
     };
+
+    // if its the learning node
+    if (isCurrent) {
+        return (
+            <Animated.View
+                ref={nodeRef}
+                style={[
+                    styles.containerVertical,
+                    isLast && styles.lastContainer,
+                    isCurrent && animatedStyle
+                ]}
+            >
+                {!isLast && <View style={styles.connectionLine} />}
+
+                <TouchableOpacity
+                    style={styles.currentLessonContainer}
+                    onPress={handlePress}
+                    disabled={isLocked}
+                >
+                    <MaterialCommunityIcons name="gift" size={24} color="#FFD700" />
+                </TouchableOpacity>
+
+                <View style={styles.labelBubble}>
+                    <Text style={styles.labelText}>Start</Text>
+                </View>
+            </Animated.View>
+        );
+    }
 
     return (
         <Animated.View
             ref={nodeRef}
             style={[
-                styles.container,
+                styles.containerVertical,
                 isLast && styles.lastContainer,
-                isCurrent && animatedStyle
+                // isCurrent && animatedStyle
             ]}
         >
+            {!isLast && <View style={styles.connectionLine} />}
+
             <TouchableOpacity
                 style={[
                     styles.nodeContainer,
@@ -77,7 +109,7 @@ const LessonNode: React.FC<LessonNodeProps> = ({
                 onPress={handlePress}
                 disabled={isLocked}
             >
-                <Ionicons name={getNodeIcon()} size={16} color="#FFFFFF" />
+                {getNodeIcon() && <Ionicons name={getNodeIcon()} size={20} color="#FFFFFF" />}
             </TouchableOpacity>
 
             <View style={styles.contentContainer}>
@@ -91,18 +123,6 @@ const LessonNode: React.FC<LessonNodeProps> = ({
                     {lesson.name}
                 </Text>
 
-                {lesson.description && (
-                    <Text
-                        style={[
-                            styles.lessonDescription,
-                            isLocked && styles.lockedText
-                        ]}
-                        numberOfLines={2}
-                    >
-                        {lesson.description}
-                    </Text>
-                )}
-
                 {isCurrent && (
                     <View style={styles.currentIndicator}>
                         <Text style={styles.currentText}>Current Lesson</Text>
@@ -114,37 +134,69 @@ const LessonNode: React.FC<LessonNodeProps> = ({
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        marginBottom: 24,
-        alignItems: 'flex-start',
+    containerVertical: {
+        alignItems: 'center',
+        marginBottom: 40,
+        position: 'relative',
     },
     lastContainer: {
         marginBottom: 0,
     },
     nodeContainer: {
-        width: 32,
-        height: 32,
-        borderRadius: 16,
+        width: 60,
+        height: 60,
+        borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: -16,
-        marginRight: 12,
         backgroundColor: '#6B7280',
+        marginBottom: 8,
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    currentLessonContainer: {
+        width: 70,
+        height: 70,
+        backgroundColor: '#FEF3C7',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        marginBottom: 8,
+        elevation: 3,
+        borderWidth: 4,
+        borderColor: 'lightpink',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    connectionLine: {
+        position: 'absolute',
+        width: 6,
+        height: 100,
+        backgroundColor: 'lightpink',
+        opacity: 0.5,
+        borderStyle: 'dashed',
+        borderWidth: 2,
+        borderColor: '#green',
+        top: 60,
+        zIndex: -1,
     },
     contentContainer: {
-        flex: 1,
-        paddingRight: 16,
+        backgroundColor: 'lightpink',
+        alignItems: 'center',
+        borderRadius: 10,
+        paddingHorizontal: 16,
+        maxWidth: 200,
     },
     lessonTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#1F2937',
+        color: '#ffff',
         marginBottom: 4,
-    },
-    lessonDescription: {
-        fontSize: 14,
-        color: '#6B7280',
+        textAlign: 'center',
     },
     lockedText: {
         color: '#9CA3AF',
@@ -159,7 +211,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         paddingVertical: 2,
         borderRadius: 4,
-        alignSelf: 'flex-start',
+    },
+    labelBubble: {
+        backgroundColor: 'white',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 20,
+        elevation: 2,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+    },
+    labelText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#6366F1',
     },
 });
 

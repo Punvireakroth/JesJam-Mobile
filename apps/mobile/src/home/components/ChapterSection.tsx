@@ -12,7 +12,6 @@ interface ChapterSectionProps {
 
 const ChapterSection: React.FC<ChapterSectionProps> = ({
     chapter,
-    isCurrentChapter,
     currentLessonId,
     isLastUnit
 }) => {
@@ -21,14 +20,7 @@ const ChapterSection: React.FC<ChapterSectionProps> = ({
             styles.container,
             isLastUnit && styles.lastUnitContainer
         ]}>
-            <View style={styles.headerContainer}>
-                <Text style={styles.chapterTitle}>{chapter.name}</Text>
-                <Text style={styles.lessonCount}>
-                    {chapter.lessons.length} lesson{chapter.lessons.length !== 1 ? 's' : ''}
-                </Text>
-            </View>
-
-            <View style={styles.pathContainer}>
+            <View>
                 {chapter.lessons.map((lesson, index) => {
                     const isLast = index === chapter.lessons.length - 1;
                     const isCurrent = lesson.id === currentLessonId;
@@ -55,27 +47,6 @@ const styles = StyleSheet.create({
     },
     lastUnitContainer: {
         marginBottom: 0,
-    },
-    headerContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    chapterTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#1F2937',
-    },
-    lessonCount: {
-        fontSize: 14,
-        color: '#6B7280',
-    },
-    pathContainer: {
-        borderLeftWidth: 2,
-        borderLeftColor: '#E5E7EB',
-        paddingLeft: 24,
-        marginLeft: 12,
     },
 });
 

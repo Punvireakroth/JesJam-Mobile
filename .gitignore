@@ -43,6 +43,7 @@ apps/api/bootstrap/cache/
 # IDE
 .idea/
 .vscode/
+.github/
 *.swp
 *.swo
 .DS_Store
